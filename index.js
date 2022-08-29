@@ -5,24 +5,22 @@ function getComputerChoice() {
     return choice.toLowerCase();
 }
 
-function capitalize(word) {
-    capWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-    return capWord
-}
+let playerCount = 0;
+let computerCount = 0;
 
 function playRound(playerSelection, computerSelection) {
-    // playerSelection.toLowerCase();
-    // computerSelection.toLowerCase();
     
-    const playerWin = `You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}!`;
-    const computerWin = `The Computer Wins! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`;
-    const draw = "It's a draw."
+    const playerWin = `You Win This Round! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}!`;
+    const computerWin = `The Computer Wins This Round! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`;
+    const draw = "This round is a draw"
 
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "scissors") {
-            return playerWin
+            playerCount ++;
+            return playerWin;
         }
         else if(computerSelection === "paper") {
+            computerCount ++;
             return computerWin;
         }
         else if(computerSelection === "rock") {
@@ -32,9 +30,11 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection.toLowerCase() === "scissors") {
         if (computerSelection === "paper") {
+            playerCount ++;
             return playerWin
         }
         else if(computerSelection === "rock") {
+            computerCount ++;
             return computerWin;
         }
         else if(computerSelection === "scissors") {
@@ -44,9 +44,11 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection.toLowerCase() === "paper") {
         if (computerSelection === "rock") {
+            playerCount ++;
             return playerWin
         }
         else if(computerSelection === "scissors") {
+            computerCount ++;
             return computerWin;
         }
         else if(computerSelection === "paper") {
@@ -57,9 +59,40 @@ function playRound(playerSelection, computerSelection) {
     else {
         "You must choose either Rock, Paper or Scissors";
     }
+
 }
 
-const playerSelection = "PaPER";
-const computerSelection = getComputerChoice();
+// const computerSelection = getComputerChoice();
 
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let computerSelection = getComputerChoice();
+        let playerSelection = prompt("Choose either Rock, Paper or Scissors: ");
+        console.log(playRound(playerSelection, computerSelection));
+    }
+    gameWinner();
+}
+
+function gameWinner() {
+    const playerWon = `You won the game with ${playerCount} ${playerCount > 1 ? "points" : "point"}`;
+    const computerWon = `The Computer won the game with ${computerCount} ${computerCount > 1 ? "points" : "point"}`;
+    const gameDraw = `The game was a draw with both points being equal`;
+
+    if (playerCount > computerCount) {
+        return alert(playerWon);
+    }
+    else if(playerCount < computerCount) {
+        return alert(computerWon);
+    }
+    else if(playerCount === computerCount) {
+        return alert(gameDraw)
+    }
+
+}
+
+function capitalize(word) {
+    capWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    return capWord
+}
+
+game();
