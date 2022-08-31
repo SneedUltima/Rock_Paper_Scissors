@@ -1,3 +1,4 @@
+////////**** GAME LOGIC ****/////////
 function getComputerChoice() {
     // Randomly return Rock, Paper or Scissors
     const choices = ["Rock", "Paper", "Scissors"];
@@ -62,16 +63,14 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-// const computerSelection = getComputerChoice();
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        let computerSelection = getComputerChoice();
-        let playerSelection = prompt("Choose either Rock, Paper or Scissors: ");
-        console.log(playRound(playerSelection, computerSelection));
-    }
-    gameWinner();
-}
+// function game() {
+//     for (let i = 0; i < 5; i++) {
+//         let computerSelection = getComputerChoice();
+//         let playerSelection = prompt("Choose either Rock, Paper or Scissors: ");
+//         console.log(playRound(playerSelection, computerSelection));
+//     }
+//     gameWinner();
+// }
 
 function gameWinner() {
     const playerWon = `You won the game with ${playerCount} ${playerCount > 1 ? "points" : "point"}`;
@@ -95,4 +94,37 @@ function capitalize(word) {
     return capWord
 }
 
-game();
+// game();
+
+////////**** DOM MANIPULATION ****/////////
+const rockBtn = document.querySelector("#rock-btn");
+const paperBtn = document.querySelector("#paper-btn");
+const scissorsBtn = document.querySelector("#scissors-btn");
+
+const resultContainer = document.querySelector("#results")
+
+function showResult(choice)  {
+    let result = playRound(choice, getComputerChoice())
+    return result;
+}
+
+rockBtn.addEventListener("click", () => {
+    result = showResult("Rock")
+    const presentResult = document.createElement("p");
+    presentResult.textContent = (result)
+    resultContainer.appendChild(presentResult);
+})
+
+paperBtn.addEventListener("click", () => {
+    result = showResult("Paper")
+    const presentResult = document.createElement("p");
+    presentResult.textContent = (result)
+    resultContainer.appendChild(presentResult);
+})
+
+scissorsBtn.addEventListener("click", () => {
+    result = showResult("Scissors")
+    const presentResult = document.createElement("p");
+    presentResult.textContent = (result)
+    resultContainer.appendChild(presentResult);
+})
