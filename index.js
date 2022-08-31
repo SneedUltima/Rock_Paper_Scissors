@@ -1,19 +1,22 @@
 ////////**** GAME LOGIC ****/////////
+
+// Randomly return Rock, Paper or Scissors
 function getComputerChoice() {
-    // Randomly return Rock, Paper or Scissors
     const choices = ["Rock", "Paper", "Scissors"];
     const choice = choices[Math.floor(Math.random(2) * 3)];
     return choice.toLowerCase();
 }
 
+// Player Scores
 let playerCount = 0;
 let computerCount = 0;
 
+// Logic on who wins each round based on player decision and providing result
 function playRound(playerSelection, computerSelection) {
     
-    const playerWin = `You Win This Round! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}!`;
-    const computerWin = `The Computer Wins This Round! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`;
-    const draw = "This round is a draw"
+    const playerWin = `You Win This Round! ${playerSelection} beats ${computerSelection}!`;
+    const computerWin = `The Computer Wins This Round! ${computerSelection} beats ${playerSelection}.`;
+    const draw = "This round is a draw."
 
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "scissors") {
@@ -63,68 +66,81 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-// function game() {
-//     for (let i = 0; i < 5; i++) {
-//         let computerSelection = getComputerChoice();
-//         let playerSelection = prompt("Choose either Rock, Paper or Scissors: ");
-//         console.log(playRound(playerSelection, computerSelection));
-//     }
-//     gameWinner();
-// }
-
+// Displays winner and clears game if score equals 5
 function gameWinner() {
     const playerWon = `You won the game with ${playerCount} ${playerCount > 1 ? "points" : "point"}`;
     const computerWon = `The Computer won the game with ${computerCount} ${computerCount > 1 ? "points" : "point"}`;
-    const gameDraw = `The game was a draw with both points being equal`;
 
-    if (playerCount > computerCount) {
-        return alert(playerWon);
+    if (playerCount >= 5) {
+        playerCount ++;
+        setTimeout(function() {
+            alert(playerWon)
+        }, 100)
+        clearGame()
     }
-    else if(playerCount < computerCount) {
-        return alert(computerWon);
+    else if(computerCount >=5 ) {
+        computerCount ++;
+        setTimeout(function() {
+            alert(computerWon)
+        }, 100)
+        clearGame()
     }
-    else if(playerCount === computerCount) {
-        return alert(gameDraw)
-    }
-
 }
 
-function capitalize(word) {
-    capWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-    return capWord
-}
-
-// game();
 
 ////////**** DOM MANIPULATION ****/////////
 const rockBtn = document.querySelector("#rock-btn");
 const paperBtn = document.querySelector("#paper-btn");
 const scissorsBtn = document.querySelector("#scissors-btn");
-
-const resultContainer = document.querySelector("#results")
+const resultContainer = document.querySelector(".results")
+let playerScore = document.querySelector("#playerScore")
+let computerScore = document.querySelector("#computerScore")
 
 function showResult(choice)  {
     let result = playRound(choice, getComputerChoice())
     return result;
 }
 
-rockBtn.addEventListener("click", () => {
-    result = showResult("Rock")
+function createElement(result) {
     const presentResult = document.createElement("p");
     presentResult.textContent = (result)
     resultContainer.appendChild(presentResult);
+}
+
+rockBtn.addEventListener("click", () => {
+    result = showResult("Rock")
+    createElement(result)
+    updateScore();
 })
 
 paperBtn.addEventListener("click", () => {
     result = showResult("Paper")
-    const presentResult = document.createElement("p");
-    presentResult.textContent = (result)
-    resultContainer.appendChild(presentResult);
+    createElement(result)
+    updateScore();
 })
 
 scissorsBtn.addEventListener("click", () => {
     result = showResult("Scissors")
-    const presentResult = document.createElement("p");
-    presentResult.textContent = (result)
-    resultContainer.appendChild(presentResult);
+    createElement(result)
+    updateScore();
 })
+
+function updateScore() {
+    playerScore.textContent = `Player Score: ${playerCount}`
+    computerScore.textContent = `Computer Score: ${computerCount}`
+    gameWinner();
+}
+
+function clearGame() {
+    playerCount = 0;
+    computerCount = 0;
+    playerScore.textContent = `Player Score: ${playerCount}`
+    computerScore.textContent = `Computer Score: ${computerCount}`
+    removeAllChildNodes(resultContainer)
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
