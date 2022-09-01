@@ -151,6 +151,7 @@ const modalContainer = document.getElementById("modal-container")
 const close = document.getElementById("close")
 const modalResult = document.getElementById("modal-result")
 
+
 function showModal(winner) {
     modalContainer.classList.add("show")
     modalResult.textContent = `${winner}`
@@ -164,6 +165,11 @@ function showBlur() {
     bodyContainer.classList.add("show")
 }
 
+function removeBlur() {
+    bodyContainer.classList.remove("show")
+}
+
 close.addEventListener("click", () => {
     closeModal()
+    removeBlur()
 })

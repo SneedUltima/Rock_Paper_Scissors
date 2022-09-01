@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Silkscreen:wght@400;700&family=Lato:wght@400;700&display=swap');
 
 
 body {
@@ -51,12 +51,14 @@ body {
 }
 
 .modal {
-    font-family: 'Bebas Neue';
-    font-size: 32px;
+    font-family: 'lato';
+    font-size: 24px;
+    font-weight: 400;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     background-color: #47a386;
     color: white;
-    background: rgb(18,22,32)
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 }
 
 .modal button {
