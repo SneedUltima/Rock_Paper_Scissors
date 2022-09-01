@@ -73,17 +73,15 @@ function gameWinner() {
 
     if (playerCount >= 5) {
         playerCount ++;
-        setTimeout(function() {
-            alert(playerWon)
-        }, 100)
+        showModal(playerWon)
         clearGame()
+        showBlur()
     }
     else if(computerCount >=5 ) {
         computerCount ++;
-        setTimeout(function() {
-            alert(computerWon)
-        }, 100)
+        showModal(computerWon)
         clearGame()
+        showBlur()
     }
 }
 
@@ -102,6 +100,7 @@ function showResult(choice)  {
 }
 
 function createElement(result) {
+    removeAllChildNodes(resultContainer)
     const presentResult = document.createElement("p");
     presentResult.textContent = (result)
     resultContainer.appendChild(presentResult);
@@ -144,3 +143,27 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+
+////////**** MODAL ALERT ****/////////
+const bodyContainer = document.getElementById("body-container")
+const modalContainer = document.getElementById("modal-container")
+const close = document.getElementById("close")
+const modalResult = document.getElementById("modal-result")
+
+function showModal(winner) {
+    modalContainer.classList.add("show")
+    modalResult.textContent = `${winner}`
+}
+
+function closeModal() {
+    modalContainer.classList.remove("show")
+}
+
+function showBlur() {
+    bodyContainer.classList.add("show")
+}
+
+close.addEventListener("click", () => {
+    closeModal()
+})

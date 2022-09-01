@@ -50,3 +50,26 @@ body {
     color: white;
 }
 
+.modal {
+    font-family: 'Bebas Neue';
+    font-size: 32px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: #47a386;
+    color: white;
+    background: rgb(18,22,32)
+}
+
+.modal button {
+    font-family: sans-serif;
+    font-size: 20px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size: 14px;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+.modal button:hover {
+   background-color: rgb(227, 225, 225);
+}
