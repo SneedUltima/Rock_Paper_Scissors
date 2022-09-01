@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Silkscreen:wght@400;700&display=swap');
+
+
+body {
+    font-family: 'Silkscreen', cursive;
+    background-color: black;
+}
+
+.header {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 120px;
+    background-color: black;
+    color: white;
+}
+
+.buttons {
+    background-color: black;
+}
+
+.buttons button {
+    font-size: 40px;
+    padding: 20px;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: rgb(193, 187, 187);
+}
+
+.score {
+    font-size: 20px;
+    color: white;
+    background-color: black;
+}
+
+.resultsTitle {
+    color: white;
+}
+
+.results {
+    background-color: rgb(245, 235, 235);
+    border: 10px black solid;
+    border-radius: 5%;
+}
+
+.footer {
+    font-family: 'Bebas Neue';
+    font-size: 12px;
+    color: white;
+}
+
